@@ -11,5 +11,14 @@ const fs = require("fs");
 const path = require("path");
 
 const filePath = path.join(__dirname, "quotes.txt");
+fs.readFile(filePath, "utf8", (readFileError, data) => {
+    if (readFileError) {
+        console.error(readFileError);
+        return;
+    }
+    const lines = data.split("\n").filter(line => line.trim() !== "");
+    const randomIndex = Math.floor(Math.random() * lines.length);
+    console.log(`Random Line: ${lines[randomIndex]}`);
+});
 
 // write your code here
